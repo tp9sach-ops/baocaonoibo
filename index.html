@@ -283,6 +283,47 @@ body.imm .fhome svg,body.imm .fext svg{width:18px;height:18px}
 .tl a.no{opacity:.55;border-style:dashed;cursor:default}
 .stp{padding-left:20px;font-size:14px;line-height:1.75;color:var(--ink)}
 @media(max-width:860px){.ins{flex-wrap:wrap}}
+/* ===== Popup cài đặt ứng dụng ===== */
+.iov{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:16px 16px 84px;background:rgba(6,22,16,.68);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.iov.on{opacity:1}
+.isheet{position:relative;width:min(460px,100%);max-height:100%;overflow:auto;background:#fff;border-radius:28px;box-shadow:0 40px 90px -24px rgba(0,0,0,.65);transform:translateY(18px) scale(.97);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.iov.on .isheet{transform:none}
+.ihd{display:flex;align-items:center;gap:14px;padding:24px 24px 18px;color:#fff;background:radial-gradient(320px 180px at 100% 0%,rgba(201,162,75,.35),transparent 62%),linear-gradient(135deg,var(--g9),var(--g8))}
+.ihd img{width:60px;height:60px;border-radius:16px;background:#fff;object-fit:cover;flex:none;box-shadow:0 8px 20px -8px rgba(0,0,0,.6)}
+.ihd b{display:block;font:600 20px/1.2 var(--serif)}.ihd small{display:block;font-size:12.5px;color:var(--gold2);margin-top:3px}
+.ix{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.12)}.ix:hover{background:rgba(255,255,255,.24)}
+.ibd{padding:20px 24px 8px}
+.ibd h4{font:600 18px/1.3 var(--serif);color:var(--g8);margin-bottom:6px}
+.ibd p{font-size:14px;line-height:1.65;color:var(--mut)}
+.ibn{list-style:none;display:flex;flex-direction:column;gap:11px;margin:14px 0 4px}
+.ibn li{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--ink)}
+.ibn li i{width:24px;height:24px;border-radius:50%;background:#EAF3EE;color:var(--g6);display:grid;place-items:center;flex:none}
+.ibn li i svg{width:14px;height:14px;stroke-width:2.4}
+.stps{list-style:none;display:flex;flex-direction:column;gap:16px;margin:14px 0 4px;counter-reset:s}
+.stps>li{display:flex;gap:14px;align-items:flex-start;counter-increment:s}
+.stps>li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:linear-gradient(145deg,var(--gold),#B48A35);color:var(--g9);font:700 15px var(--sans);display:grid;place-items:center;flex:none;margin-top:1px}
+.stps .sx{flex:1;min-width:0;font-size:14.5px;line-height:1.55;color:var(--ink)}
+.mk{margin-top:9px;display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;background:#F2F5F3;border:1.5px dashed #C9D6CE;font-size:14px;font-weight:500;color:var(--g9)}
+.mk svg{width:24px;height:24px;color:#2F7BF6;flex:none}
+.mk.hl{background:#FFF8E6;border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,75,.18);animation:pls 1.8s ease-in-out infinite}
+.mk small{margin-left:auto;font-size:12px;color:var(--mut);font-weight:400}
+@keyframes pls{50%{box-shadow:0 0 0 8px rgba(201,162,75,.08)}}
+.iact{display:flex;gap:10px;flex-wrap:wrap;padding:16px 24px 24px}
+.iact .btn{flex:1;justify-content:center;padding:13px 20px;font-size:15px}
+.btn.big{font-size:16px;padding:15px 22px}
+.inote{margin:6px 24px 0;font-size:12.5px;color:var(--mut);line-height:1.6}
+.okb{text-align:center;padding:10px 0 4px}
+.okb .ck{width:64px;height:64px;margin:0 auto 12px;border-radius:50%;background:#EAF3EE;color:var(--g6);display:grid;place-items:center}
+.okb .ck svg{width:32px;height:32px;stroke-width:2.2}
+.spn2{width:34px;height:34px;margin:6px auto 14px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);animation:spn .8s linear infinite}
+.ptr{position:fixed;z-index:130;color:var(--gold);pointer-events:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,.55));display:flex;flex-direction:column;align-items:center;gap:4px;font:600 12.5px var(--sans);text-align:center;max-width:150px}
+.ptr svg{width:46px;height:46px;stroke-width:2.6}
+.ptr span{background:rgba(10,38,29,.9);color:var(--gold2);padding:5px 11px;border-radius:999px;white-space:nowrap}
+.ptr.top{top:8px;right:14px;animation:bu 1s ease-in-out infinite alternate}
+.ptr.bot{bottom:8px;left:50%;margin-left:-60px;width:120px;animation:bd 1s ease-in-out infinite alternate}
+.ptr.botr{bottom:8px;right:14px;animation:bd 1s ease-in-out infinite alternate}
+@keyframes bu{to{transform:translateY(-9px)}}
+@keyframes bd{to{transform:translateY(9px)}}
 </style>
 </head>
 <body>
@@ -532,7 +573,7 @@ $('etbReset').onclick=async()=>{const b=$('etbReset');if(!rstT){b.textContent='B
 function openModal(html,cls){const mo=$('mo');$('md').className='md '+(cls||'');$('md').innerHTML=html;mo.hidden=false;requestAnimationFrame(()=>mo.classList.add('on'))}
 function closeModal(){const mo=$('mo');mo.classList.remove('on');clearTimeout(closeModal.h);closeModal.h=setTimeout(()=>{if(!mo.classList.contains('on')){mo.hidden=true;$('md').innerHTML=''}},220)}
 $('mo').addEventListener('mousedown',e=>{if(e.target===$('mo'))closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('mo').hidden)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('iov'))closeInstall();else if(!$('mo').hidden)closeModal()}});
 $('md').addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='pw')submitLogin();else if(e.target.id==='evTitle')saveEv();else if(e.target.id==='lkIn')saveLink()});
 $('md').addEventListener('click',e=>{
  if(e.target.closest('[data-close]'))return closeModal();
@@ -733,25 +774,93 @@ const TECH=[
 ];
 
 function insInner(){
- return `<div class="ic">${svg('download')}</div><div class="tx"><b>Cài ứng dụng 9 Sạch về ${DEV_NAME}</b><span>Phát hiện thiết bị: ${OS_NAME}. Cài một lần, lần sau mở thẳng từ màn hình chính hoặc màn hình máy tính.</span></div><div class="ac"><button class="btn gold sm" data-ins="go">Cài ứng dụng</button><button class="btn o sm" data-ins="done">Đã cài rồi</button></div>`}
+ return `<div class="ic">${svg('download')}</div><div class="tx"><b>Cài ứng dụng 9 Sạch về ${DEV_NAME}</b><span>Mở nhanh từ biểu tượng ngoài ${(IS_IOS||IS_ANDROID)?'màn hình chính':'màn hình máy tính'}, chạy toàn màn hình như một ứng dụng thật. Thiết bị của bạn: ${OS_NAME}.</span></div><div class="ac"><button class="btn gold sm" data-ins="go">Cài ứng dụng</button><button class="btn o sm" data-ins="done">Đã cài rồi</button></div>`}
 function refreshInstall(){
  ['insBox','insTech'].forEach(id=>{const el=$(id);if(el){el.hidden=installed;el.innerHTML=insInner()}})}
-function guideHTML(){
- let t,s;
- if(IS_IOS&&IS_SAFARI){t="Cài trên iPhone / iPad (Safari)";s=["Bấm nút <b>Chia sẻ</b> (hình vuông có mũi tên hướng lên) ở thanh dưới.","Kéo xuống, chọn <b>Thêm vào Màn hình chính</b>.","Bấm <b>Thêm</b> ở góc trên bên phải."]}
- else if(IS_IOS){t="Cài trên iPhone / iPad";s=["Bấm nút <b>Chia sẻ</b> của trình duyệt, chọn <b>Thêm vào Màn hình chính</b>.","Nếu không thấy mục này, mở trang bằng <b>Safari</b> rồi làm lại bước 1.","Bấm <b>Thêm</b>."]}
- else if(IS_ANDROID){t="Cài trên Android";s=["Bấm menu <b>⋮</b> ở góc trên bên phải của Chrome.","Chọn <b>Cài đặt ứng dụng</b> (hoặc <b>Thêm vào màn hình chính</b>).","Bấm <b>Cài đặt</b>."]}
- else if(IS_FF){t="Trình duyệt chưa hỗ trợ";s=["Firefox trên máy tính không hỗ trợ cài ứng dụng web.","Hãy mở trang này bằng <b>Chrome</b> hoặc <b>Edge</b> rồi bấm lại nút cài."]}
- else if(IS_MAC&&IS_SAFARI){t="Cài trên Mac (Safari)";s=["Trên thanh menu chọn <b>Tệp</b>, rồi <b>Thêm vào Dock</b> (cần macOS Sonoma trở lên).","Bấm <b>Thêm</b>."]}
- else if(IS_EDGE){t="Cài trên Microsoft Edge";s=["Bấm menu <b>···</b>, chọn <b>Ứng dụng</b>, rồi <b>Cài đặt trang này dưới dạng ứng dụng</b>.","Bấm <b>Cài đặt</b>."]}
- else{t="Cài trên Chrome";s=["Bấm biểu tượng cài đặt ở cuối thanh địa chỉ, hoặc menu <b>⋮</b>, chọn <b>Lưu và chia sẻ</b>, rồi <b>Cài đặt trang dưới dạng ứng dụng</b>.","Bấm <b>Cài đặt</b>. Tích <b>Thêm lối tắt trên màn hình</b> nếu muốn có biểu tượng ngoài Desktop."]}
- return `<div class="lg"><div class="lgi">${svg('download')}</div><h3>${t}</h3><ol class="stp">${s.map(x=>`<li>${x}</li>`).join('')}</ol><div class="ma"><button class="btn" data-close>Đã hiểu</button></div></div>`}
-async function doInstall(){
- if(DEFERRED){const d=DEFERRED;DEFERRED=null;
-  try{d.prompt();const c=await d.userChoice;if(c&&c.outcome==="accepted"){setFlag(true);installed=true}}catch(e){}
-  refreshInstall();return}
- if(IN_FRAME&&INSTALL_URL){window.open(INSTALL_URL+"#install","_blank","noopener");return}
- openModal(guideHTML(),'sm')}
+
+/* ----- Popup cài đặt: nhận diện thiết bị, hiện đúng cách cài, có mũi tên chỉ chỗ cần bấm ----- */
+const IS_INAPP=/FBAN|FBAV|FB_IAB|Zalo|Instagram|Line\/|MicroMessenger|Messenger|Snapchat|TikTok/i.test(UA);
+const IS_CHROMIUM=!IS_IOS&&/Chrome|Chromium|Edg\/|OPR|SamsungBrowser/i.test(UA)&&!IS_INAPP;
+const IS_SAMSUNG=/SamsungBrowser/i.test(UA);
+const IS_IPAD=/iPad/.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const IC2={share:'<path d="M12 15V3M8 7l4-4 4 4M5 11v9h14v-9"/>',plus:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/>',dots:'<circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/>',dotsh:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>',inst:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 7v6M9 10.5l3 3 3-3M8 20h8M12 16v4"/>',tick:'<path d="M5 12.5l4.5 4.5L19 7"/>',up:'<path d="M12 20V5M6 11l6-6 6 6"/>',dn:'<path d="M12 4v15M6 13l6 6 6-6"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',copy:'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'};
+const s2=n=>`<svg class="i" viewBox="0 0 24 24">${IC2[n]}</svg>`;
+let INS_ST=null,INS_WAIT=0;
+function appIconSrc(){return LOGO_URL||LOGO_FALLBACK}
+function closeInstall(){const o=$('iov');if(o){o.classList.remove('on');setTimeout(()=>o.remove(),250)}const p=$('ptr');if(p)p.remove();clearTimeout(INS_WAIT);INS_WAIT=0}
+function showInstall(body,acts,ptr,note){
+ closeInstall();
+ const o=document.createElement('div');o.className='iov';o.id='iov';
+ o.innerHTML=`<div class="isheet" role="dialog" aria-modal="true"><button class="ix" data-ic aria-label="Đóng">${svg('x')}</button><div class="ihd"><img id="iimg" alt=""><div><b>9 Sạch Checkin</b><small>${esc(location.hostname||'Ứng dụng nội bộ')}</small></div></div><div class="ibd">${body}</div>${note?`<p class="inote">${note}</p>`:''}<div class="iact">${acts}</div></div>`;
+ document.body.appendChild(o);
+ const im=o.querySelector('#iimg');im.onerror=()=>{im.onerror=null;im.src=LOGO_FALLBACK};im.src=appIconSrc();
+ o.addEventListener('mousedown',e=>{if(e.target===o)closeInstall()});
+ o.addEventListener('click',e=>{const b=e.target.closest('[data-ic],[data-ia]');if(!b)return;if(b.hasAttribute('data-ic')){closeInstall();return}
+  const a=b.dataset.ia;
+  if(a==='native')runNative();
+  else if(a==='open')window.open(INSTALL_URL+'?install=1','_blank','noopener');
+  else if(a==='copy')copyLink();
+  else if(a==='chrome')openInChrome();
+  else if(a==='done'){installed=true;setFlag(true);refreshInstall();closeInstall();toast('Đã ẩn mục cài ứng dụng')}});
+ if(ptr){const L={top:'Bấm ở đây',bot:'Bấm ở đây',botr:'Bấm ở đây'}[ptr],d=ptr==='top'?'up':'dn';
+  const a=document.createElement('div');a.id='ptr';a.className='ptr '+ptr;a.innerHTML=`${s2(d)}<span>${L}</span>`;document.body.appendChild(a)}
+ requestAnimationFrame(()=>o.classList.add('on'))}
+function copyLink(){const u=INSTALL_URL||location.href;
+ const ok=()=>toast('Đã sao chép liên kết, hãy dán vào Safari hoặc Chrome');
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok).catch(()=>fb());else fb();
+ function fb(){const t=document.createElement('textarea');t.value=u;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{document.execCommand('copy');ok()}catch(e){toast(u)}t.remove()}}
+function openInChrome(){const u=(INSTALL_URL||location.href).replace(/^https?:\/\//,'');location.href='intent://'+u+'#Intent;scheme=https;package=com.android.chrome;end'}
+const BEN=`<ul class="ibn"><li><i>${s2('tick')}</i><span>Mở nhanh bằng biểu tượng 9 Sạch, không cần vào Google Sites</span></li><li><i>${s2('tick')}</i><span>Chạy toàn màn hình như ứng dụng thật, không có thanh địa chỉ</span></li><li><i>${s2('tick')}</i><span>Luôn là phiên bản mới nhất, không tốn dung lượng</span></li></ul>`;
+const mk=(ic,txt,hl,sm)=>`<div class="mk${hl?' hl':''}">${s2(ic)}<span>${txt}</span>${sm?`<small>${sm}</small>`:''}</div>`;
+function stepsHTML(title,list,intro){return `<h4>${title}</h4>${intro?`<p>${intro}</p>`:''}<ol class="stps">${list.map(x=>`<li><div class="sx">${x}</div></li>`).join('')}</ol>`}
+function renderInstall(){
+ const A=(t,a,cls)=>`<button class="btn ${cls||'gold'} big" data-ia="${a}">${t}</button>`,CL=`<button class="btn o big" data-ic>Để sau</button>`,DONE=`<button class="btn o big" data-ia="done">Tôi đã cài rồi</button>`;
+ /* 1) Đang nhúng trong Google Sites: không cài được tại chỗ, mở trang cài đặt ở tab riêng */
+ if(IN_FRAME&&INSTALL_URL){
+  return showInstall(`<h4>Cài ứng dụng 9 Sạch</h4><p>Trình duyệt không cho cài ứng dụng từ bên trong Google Sites. Bấm nút dưới, trang cài đặt sẽ mở ở tab mới và hiện nút cài một chạm.</p>${BEN}`,A('Mở trang cài đặt','open')+DONE,null,'Cài xong, từ nay bạn mở ứng dụng bằng biểu tượng trên máy, không cần vào lại Google Sites.')}
+ /* 2) Trình duyệt trong app Zalo, Facebook...: không cài được */
+ if(IS_INAPP){
+  return showInstall(stepsHTML('Hãy mở bằng trình duyệt chính',[`Bấm <b>Sao chép liên kết</b> bên dưới.`,`Mở ${IS_IOS?'<b>Safari</b>':'<b>Chrome</b>'}, dán vào thanh địa chỉ rồi mở trang.`,`Bấm lại <b>Cài ứng dụng</b>.`],'Trình duyệt bên trong Zalo, Facebook, Messenger không hỗ trợ cài ứng dụng.'),A('Sao chép liên kết','copy')+(IS_ANDROID?A('Mở bằng Chrome','chrome','o'):''))}
+ /* 3) iPhone / iPad */
+ if(IS_IOS){
+  const safari=IS_SAFARI,ipad=IS_IPAD;
+  const shareWhere=ipad?'ở góc trên bên phải':(safari?'ở thanh dưới cùng (nếu không thấy, bấm <b>⋯</b> rồi chọn <b>Chia sẻ</b>)':'ở thanh địa chỉ phía trên');
+  const ptr=(ipad||!safari)?'top':'bot';
+  return showInstall(stepsHTML('Cài trên '+(ipad?'iPad':'iPhone'),[
+   `Bấm nút <b>Chia sẻ</b> ${shareWhere}.${mk('share','Chia sẻ',true)}`,
+   `Kéo menu xuống và chọn <b>Thêm vào Màn hình chính</b>.${mk('plus','Thêm vào Màn hình chính',true)}`,
+   `Bấm <b>Thêm</b> ở góc trên bên phải. Biểu tượng 9 Sạch sẽ xuất hiện trên màn hình chính.`],safari?'':'Nếu không thấy mục này, hãy mở trang bằng Safari rồi làm lại.'),
+   `<button class="btn o big" data-ic>Đã hiểu</button>`+DONE,ptr,'iOS không cho nút bấm cài tự động, nên cần làm 3 bước trên. Chỉ mất vài giây.')}
+ /* 4) Mac Safari */
+ if(IS_MAC&&IS_SAFARI){
+  return showInstall(stepsHTML('Cài trên Mac (Safari)',[`Trên thanh menu phía trên màn hình, chọn <b>Tệp</b>.`,`Chọn <b>Thêm vào Dock…</b>${mk('plus','Thêm vào Dock…',true)}`,`Bấm <b>Thêm</b>. Ứng dụng sẽ nằm trong Dock.`]),`<button class="btn o big" data-ic>Đã hiểu</button>`+DONE,'top','Cần macOS Sonoma (14) trở lên. Máy cũ hơn hãy dùng Chrome.')}
+ /* 5) Firefox máy tính */
+ if(IS_FF&&!IS_ANDROID){
+  return showInstall(`<h4>Trình duyệt này chưa hỗ trợ</h4><p>Firefox trên máy tính không cho cài ứng dụng web. Hãy mở trang này bằng <b>Chrome</b> hoặc <b>Edge</b>, rồi bấm lại nút cài.</p>`,A('Sao chép liên kết','copy')+CL)}
+ /* 6) Chrome, Edge, Samsung... có hộp thoại cài thật */
+ if(DEFERRED){
+  return showInstall(`<h4>Cài ứng dụng ngay</h4><p>Bấm nút dưới, trình duyệt sẽ hiện hộp thoại cài đặt. Chọn <b>Cài đặt</b> là xong.</p>${BEN}`,A('Cài đặt ngay','native')+CL)}
+ /* 7) Chrome nhưng chưa có sự kiện cài: đợi tối đa vài giây rồi chuyển sang hướng dẫn tay */
+ if(IS_CHROMIUM&&!IN_FRAME&&!INS_ST){
+  showInstall(`<div class="okb"><div class="spn2"></div><h4>Đang chuẩn bị bản cài đặt…</h4></div>`,CL);
+  INS_ST='wait';INS_WAIT=setTimeout(()=>{INS_ST='tried';if($('iov'))renderInstall()},3000);return}
+ /* 8) Hướng dẫn tay cho Chrome, Edge, Samsung */
+ const pos=IS_SAMSUNG?'botr':'top';
+ let st;
+ if(IS_ANDROID&&IS_SAMSUNG)st=[`Bấm nút menu <b>≡</b> ở góc dưới bên phải.${mk('menu','Menu',true)}`,`Chọn <b>Thêm trang vào</b>, rồi <b>Màn hình chính</b>.${mk('plus','Màn hình chính',true)}`,`Bấm <b>Thêm</b>.`];
+ else if(IS_ANDROID)st=[`Bấm menu <b>⋮</b> ở góc trên bên phải.${mk('dots','Menu',true)}`,`Chọn <b>Cài đặt ứng dụng</b> (hoặc <b>Thêm vào màn hình chính</b>).${mk('inst','Cài đặt ứng dụng',true)}`,`Bấm <b>Cài đặt</b>.`];
+ else if(IS_EDGE)st=[`Bấm menu <b>···</b> ở góc trên bên phải.${mk('dotsh','Cài đặt và nhiều mục khác',true)}`,`Chọn <b>Ứng dụng</b>, rồi <b>Cài đặt trang này dưới dạng ứng dụng</b>.${mk('inst','Cài đặt trang này dưới dạng ứng dụng',true)}`,`Bấm <b>Cài đặt</b>.`];
+ else st=[`Tìm biểu tượng cài đặt ở cuối thanh địa chỉ (hình màn hình có mũi tên xuống).${mk('inst','Cài đặt 9 Sạch Checkin',true)}`,`Nếu không thấy, bấm menu <b>⋮</b>, chọn <b>Truyền, lưu và chia sẻ</b>, rồi <b>Cài đặt trang dưới dạng ứng dụng</b>.`,`Bấm <b>Cài đặt</b>. Tích <b>Thêm lối tắt trên màn hình</b> nếu muốn có biểu tượng ngoài Desktop.`];
+ showInstall(stepsHTML('Cài ứng dụng '+(IS_ANDROID?'trên Android':'trên máy tính'),st),`<button class="btn o big" data-ic>Đã hiểu</button>`+DONE,pos)}
+function openInstall(){INS_ST=null;renderInstall()}
+async function runNative(){
+ const d=DEFERRED;if(!d){INS_ST='tried';renderInstall();return}
+ DEFERRED=null;
+ try{d.prompt();const c=await d.userChoice;
+  if(c&&c.outcome==='accepted'){setFlag(true);installed=true;refreshInstall();
+   showInstall(`<div class="okb"><div class="ck">${s2('tick')}</div><h4>Đã cài xong</h4><p>Hãy mở ứng dụng bằng biểu tượng <b>9 Sạch</b> trên ${(IS_IOS||IS_ANDROID)?'màn hình chính':'Desktop hoặc menu Start'}. Từ nay không cần vào Google Sites nữa.</p></div>`,`<button class="btn big" data-ic>Xong</button>`);return}
+ }catch(e){}
+ INS_ST='tried';renderInstall()}
 function techHTML(){
  const groups=TECH.map(g=>{const it=g.items.filter(x=>ADMIN||x.u);if(!it.length)return'';
   return `<div class="card"><h3>${esc(g.h)}</h3>${g.n?`<p class="tn">${esc(g.n)}</p>`:''}<div class="tl">${it.map(x=>x.u?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${svg('download')}<span>${esc(x.t)}</span></a>`:`<a class="no" role="note">${svg('lock')}<span>${esc(x.t)} · chưa có link</span></a>`).join('')}</div></div>`}).join('');
@@ -769,11 +878,15 @@ function openPage(m,pop){
  const b=document.createElement('div');b.className='card ins';b.id='insBox';b.innerHTML=insInner();b.hidden=installed;
  const first=document.querySelector('.bento .sec');if(first)first.before(b)})();
 document.addEventListener('click',e=>{const b=e.target.closest('[data-ins]');if(!b)return;
- if(b.dataset.ins==='go')doInstall();
+ if(b.dataset.ins==='go')openInstall();
  else if(b.dataset.ins==='done'){installed=true;setFlag(true);refreshInstall();toast('Đã ẩn mục cài ứng dụng')}});
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFERRED=e;installed=false;setFlag(false);refreshInstall()});
-window.addEventListener('appinstalled',()=>{DEFERRED=null;installed=true;setFlag(true);refreshInstall();toast('Đã cài ứng dụng thành công')});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFERRED=e;installed=false;setFlag(false);refreshInstall();if(INS_ST==='wait'&&$('iov')){clearTimeout(INS_WAIT);INS_ST=null;renderInstall()}});
+window.addEventListener('appinstalled',()=>{DEFERRED=null;installed=true;setFlag(true);refreshInstall()});
+if(navigator.getInstalledRelatedApps)navigator.getInstalledRelatedApps().then(a=>{if(a&&a.length){installed=true;setFlag(true);refreshInstall()}}).catch(()=>{});
 if("serviceWorker" in navigator&&!IN_FRAME&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+/* Mở từ Google Sites với ?install=1: hiện luôn popup cài đặt (nút bấm của người dùng sẽ kích hoạt hộp thoại thật) */
+if(/[?&]install=1/.test(location.search)&&!IN_FRAME){try{history.replaceState({r:1},'',location.pathname)}catch(e){}
+ setTimeout(()=>{if(!installed)openInstall();else toast('Ứng dụng đã được cài trên thiết bị này')},900)}
 if(location.hash==="#install")setTimeout(()=>go('kt'),700);
 
 init();
