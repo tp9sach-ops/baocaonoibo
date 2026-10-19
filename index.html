@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Công 9 Sạch</title>
-  <link rel="manifest" href="manifest.json">
+  <!-- Chuyển hướng ngay lập tức sang trang đích -->
+  <meta http-equiv="refresh" content="0; url=https://www.baocaonoibo.io.vn/">
   <style>
-    body { margin: 0; padding: 0; overflow: hidden; }
-    iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    body { margin: 0; padding: 0; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: sans-serif; }
+    a { color: #0066cc; }
   </style>
 </head>
 <body>
-  <iframe src="https://www.baocaonoibo.io.vn/"></iframe>
+  <div>
+    <p>Đang chuyển hướng đến trang web...</p>
+    <p><a href="https://www.baocaonoibo.io.vn/">Nhấn vào đây nếu trình duyệt không tự chuyển</a></p>
+  </div>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
+    // Dự phòng trường hợp meta refresh bị trình duyệt chặn
+    window.location.href = "https://www.baocaonoibo.io.vn/";
   </script>
 </body>
 </html>
