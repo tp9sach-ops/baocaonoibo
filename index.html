@@ -260,18 +260,18 @@ body.imm .frame{position:fixed;inset:0;height:100vh;height:100dvh;padding:0;z-in
 body.imm .frame .bar{display:none}
 body.imm #slot{height:100%}
 body.imm .frame iframe{height:100%}
-.fhome,.fext{display:none}
-body.imm .fhome,body.imm .fext{display:grid;position:fixed;left:env(safe-area-inset-left,0px);width:30px;border-radius:0 16px 16px 0;place-items:center;background:rgba(10,38,29,.72);color:#fff;z-index:40;touch-action:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 6px 16px -6px rgba(0,0,0,.5)}
+.fhome{display:none}
+body.imm .fhome{display:grid;position:fixed;left:env(safe-area-inset-left,0px);width:30px;border-radius:0 16px 16px 0;place-items:center;background:rgba(10,38,29,.72);color:#fff;z-index:40;touch-action:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 6px 16px -6px rgba(0,0,0,.5)}
 body.imm .fhome{top:38%;height:52px}
-body.imm .fext{top:calc(38% + 58px);height:40px;opacity:.75}
-body.imm .fhome svg,body.imm .fext svg{width:18px;height:18px}
+body.imm .fhome svg{width:18px;height:18px}
 /* ===== Cài app + Hỗ trợ kỹ thuật ===== */
 .frame{min-height:0;overflow:hidden}#slot{min-height:0}
-.ins{grid-column:span 12;display:flex;align-items:center;gap:18px;padding:18px 22px;background:linear-gradient(135deg,#FFFAEF,#fff);border-color:#F1E2B8}
-.ins .ic{width:48px;height:48px;border-radius:14px}.ins .ic svg{width:24px;height:24px}
-.ins .tx{flex:1;min-width:0}.ins .tx b{display:block;font:600 16px var(--sans);color:var(--g9)}
+.ins{grid-column:span 12;display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;gap:14px 16px;padding:18px 22px;background:linear-gradient(135deg,#FFFAEF,#fff);border-color:#F1E2B8}
+.ins .ic{width:48px;height:48px;border-radius:14px;flex:none}.ins .ic svg{width:24px;height:24px}
+.ins .tx{min-width:0}.ins .tx b{display:block;font:600 16px var(--sans);color:var(--g9)}
 .ins .tx span{display:block;font-size:13.5px;color:var(--mut);line-height:1.55;margin-top:2px}
-.ins .ac{display:flex;gap:8px;flex-wrap:wrap}
+.ins .ac{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+@media(min-width:861px){.ins{grid-template-columns:48px minmax(0,1fr) auto}.ins .ac{grid-column:auto}}
 .tp{flex:1;min-width:0;overflow:auto;display:flex;flex-direction:column;gap:18px;padding:4px 2px 40px}
 .tp .card{padding:22px}
 .tp h3{font:600 20px var(--serif);color:var(--g8);margin-bottom:12px}
@@ -282,7 +282,7 @@ body.imm .fhome svg,body.imm .fext svg{width:18px;height:18px}
 .tl a[href]:hover{border-color:var(--gold);transform:translateY(-2px)}
 .tl a.no{opacity:.55;border-style:dashed;cursor:default}
 .stp{padding-left:20px;font-size:14px;line-height:1.75;color:var(--ink)}
-@media(max-width:860px){.ins{flex-wrap:wrap}}
+@media(max-width:860px){.ins{padding:16px}.ins .ac .btn{flex:1;justify-content:center}}
 /* ===== Popup cài đặt ứng dụng ===== */
 .iov{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:16px 16px 84px;background:rgba(6,22,16,.68);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
 .iov.on{opacity:1}
@@ -373,7 +373,6 @@ body.imm .fhome svg,body.imm .fext svg{width:18px;height:18px}
   </section>
 </div>
 <button class="fhome" id="fhome" aria-label="Về trang chủ" title="Về trang chủ"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg></button>
-<a class="fext" id="fext" target="_blank" rel="noopener" aria-label="Mở trang này ở tab riêng" title="Mở trang này ở tab riêng (dùng khi trang bị chặn)"><svg class="i" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
 <div class="mo" id="mo" hidden><div class="md" id="md" role="dialog" aria-modal="true"></div></div>
 <div class="etb" id="etb" hidden><span>Đang chỉnh sửa: bấm vào chữ có viền nét đứt để sửa</span><button class="btn gold sm" id="etbSave">Lưu thay đổi</button><button class="btn ghost sm" id="etbCancel">Hủy</button><button class="btn ghost sm" id="etbReset">Khôi phục mặc định</button></div>
 <div class="toast" id="toast" role="status"></div>
@@ -413,14 +412,14 @@ const MODULES = [
     url:"https://script.google.com/macros/s/AKfycbyO9syg-sj8OcfDVuFFI_HUWaEn9UvA0k8gjmQF78UUARiBnxh5k6AkKZbSFdtxrqduQg/exec"},
  {id:"dt",   g:"learn",t:"Đào tạo",          d:"Khóa học và bài kiểm tra nhân viên.",  tag:"Đào tạo",  kw:"dao tao khoa hoc bai kiem tra hoc nhan vien moi", ic:"book", same:1,
   url:"https://tp9sach-ops.github.io/daotao/"},
- {id:"tl",   g:"learn",t:"Góc tâm linh",     d:"Nơi nghỉ ngơi, giữ tinh thần tốt.",    tag:"Thư giãn", kw:"goc tam linh tinh than nghi ngoi thu gian", ic:"lotus",
+ {id:"tl",   g:"learn",t:"Góc tâm linh",     d:"Nơi nghỉ ngơi, giữ tinh thần tốt.",    tag:"Thư giãn", kw:"goc tam linh tinh than nghi ngoi thu gian", ic:"lotus", top:1,
   url:"https://www.baocaonoibo.io.vn/t%C3%A2m-linh"},
- {id:"qt",   g:"learn",t:"Quy trình, quy định",d:"Quy trình chuẩn và nội quy công ty.", tag:"Tài liệu", kw:"quy trinh quy dinh noi quy sop tai lieu drive huong dan", ic:"folder",
-  url:"https://drive.google.com/drive/folders/1jf9G7ACOIJStI-YVIHSyioGemFQ__PJg?usp=sharing"},
+ {id:"qt",   g:"learn",t:"Quy trình, quy định",d:"Quy trình chuẩn và nội quy công ty.", tag:"Tài liệu", kw:"quy trinh quy dinh noi quy sop tai lieu drive huong dan", ic:"folder", same:1,
+  url:"https://drive.google.com/embeddedfolderview?id=1jf9G7ACOIJStI-YVIHSyioGemFQ__PJg#list"},
  {id:"kt",   g:"help", t:"Cài app, hỗ trợ kỹ thuật", d:"Cài ứng dụng về máy, phần mềm văn phòng và công cụ kỹ thuật.", tag:"Kỹ thuật", kw:"cai app ung dung ho tro ky thuat phan mem van phong wps chrome zalo evkey 7zip may in laptop office", ic:"download", page:"kt", url:"#kt"},
- {id:"tt",   g:"help", t:"Thông tin",        d:"Giới thiệu chung về hệ thống và công ty.", tag:"Giới thiệu", kw:"thong tin gioi thieu cong ty he thong", ic:"info",
+ {id:"tt",   g:"help", t:"Thông tin",        d:"Giới thiệu chung về hệ thống và công ty.", tag:"Giới thiệu", kw:"thong tin gioi thieu cong ty he thong", ic:"info", top:1,
   url:"https://www.baocaonoibo.io.vn/th%C3%B4ng-tin"},
- {id:"hotro",g:"help", t:"Liên hệ hỗ trợ",   d:"Gửi yêu cầu cho bộ phận vận hành.",    tag:"Hỗ trợ",   kw:"lien he ho tro giup do loi bao loi yeu cau", ic:"chat",
+ {id:"hotro",g:"help", t:"Liên hệ hỗ trợ",   d:"Gửi yêu cầu cho bộ phận vận hành.",    tag:"Hỗ trợ",   kw:"lien he ho tro giup do loi bao loi yeu cau", ic:"chat", top:1,
   url:"https://www.baocaonoibo.io.vn/li%C3%AAn-h%E1%BB%87-h%E1%BB%97-tr%E1%BB%A3"},
  {id:"rt",   g:"help", t:"Realtime all",     d:"Số liệu toàn hệ thống theo thời gian thực.", tag:"Realtime", kw:"realtime thoi gian thuc so lieu toan he thong", ic:"pulse",
   url:""}
@@ -444,6 +443,14 @@ MODS.forEach(m=>{$('g-'+m.g).insertAdjacentHTML('beforeend',
 
 
 /* điều hướng */
+/* Mở trang cùng tên miền (Google Sites không cho nhúng khung): chuyển cả trang; nếu bị chặn thì mở tab mới (vẫn cùng tên miền) */
+let LEAVING=false;addEventListener('pagehide',()=>{LEAVING=true});
+function openTop(url){
+ let inF=false;try{inF=window.top!==window}catch(e){inF=true}
+ if(!inF){window.open(url,'_blank');return}
+ LEAVING=false;
+ try{window.top.location.href=url}catch(e){}
+ setTimeout(()=>{if(!LEAVING&&!document.hidden)window.open(url,'_blank')},700)}
 function go(id,pop){
  const m=id==='home'?null:MODS.find(x=>x.id===id);
  if(m&&m.page){openPage(m,pop);return}
@@ -453,12 +460,13 @@ function go(id,pop){
  if(!m){if(!pop&&location.hash.length>1){try{history.replaceState({h:1},'',location.pathname+location.search)}catch(e){}}document.body.classList.remove('imm');$('home').style.display='';$('frame').style.display='none';$('slot').innerHTML='';$('ttl').textContent='Trang chủ';return}
  const url=effUrl(m);
  if(!url){toast('Mục này chưa có link');return}
+ if(m.top&&!effSame(m)){document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.id==='home'));openTop(url);return}
  if(MODE==='open'&&!m.frame&&!effSame(m)){
   const w=window.open(url,TARGET);
   if(!w)openModal(`<div class="lg"><h3>${esc(m.t)}</h3><p>Trình duyệt đang chặn mở tab mới. Bấm nút dưới để mở.</p><div class="ma"><button class="btn o" data-close>Đóng</button><a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Mở trang</a></div></div>`,'sm');
   document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.id==='home'));return}
  $('home').style.display='none';$('frame').style.display='flex';$('ttl').textContent=m.t;
- $('ext').href=url;$('fext').href=url;$('ext').style.display=(m.frame||effSame(m))?'none':'';document.body.classList.toggle('imm',effSame(m));$('bt').textContent=m.t;
+ $('ext').href=url;$('ext').style.display=(m.frame||effSame(m))?'none':'';document.body.classList.toggle('imm',effSame(m));$('bt').textContent=m.t;
  /* Nạp iframe bằng location.replace() để iframe KHÔNG tạo thêm mục lịch sử (tránh Back bị trắng trang) */
  $('slot').innerHTML=`<div class="ldr" id="ldr"><i></i>Đang mở ${esc(m.t)}…</div>`;
  const fr=document.createElement('iframe');
@@ -479,9 +487,9 @@ document.addEventListener('click',e=>{if(EDIT)return;const b=e.target.closest('[
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role=button],[role=link]')&&!e.target.isContentEditable){e.preventDefault();e.target.click()}});
 $('back').onclick=()=>go('home');
 $('fhome').onclick=()=>{if(!$('fhome').dataset.drag)go('home')};
-(function(){const b=$('fhome'),x=$('fext');let sy=0,st=0,mv=false;
+(function(){const b=$('fhome');let sy=0,st=0,mv=false;
  b.addEventListener('pointerdown',e=>{sy=e.clientY;st=b.offsetTop;mv=false;b.setPointerCapture(e.pointerId)});
- b.addEventListener('pointermove',e=>{if(!b.hasPointerCapture(e.pointerId))return;const dy=e.clientY-sy;if(Math.abs(dy)>6)mv=true;if(mv){const t=Math.min(innerHeight-110,Math.max(8,st+dy));b.style.top=t+'px';x.style.top=(t+58)+'px'}});
+ b.addEventListener('pointermove',e=>{if(!b.hasPointerCapture(e.pointerId))return;const dy=e.clientY-sy;if(Math.abs(dy)>6)mv=true;if(mv){const t=Math.min(innerHeight-110,Math.max(8,st+dy));b.style.top=t+'px'}});
  b.addEventListener('pointerup',()=>{b.dataset.drag=mv?'1':'';setTimeout(()=>{b.dataset.drag=''},50)});
 })();
 /* Mốc chặn lịch sử: back/vuốt không thoát ra khỏi Checkin (tránh trang trắng của Google Sites) */
@@ -733,7 +741,11 @@ $('fab').dataset.id='hotro';$('fab').removeAttribute('target');$('fab').href='#h
 
 /* ===== CÀI ỨNG DỤNG + HỖ TRỢ KỸ THUẬT ===== */
 /* Địa chỉ THẬT của trang Checkin trên GitHub Pages (nơi có manifest + sw.js). Sửa lại cho đúng. */
+/* Địa chỉ trang Checkin trên GitHub Pages (nơi có manifest + sw.js): từ Google Sites bấm cài sẽ mở trang này để cài một chạm.
+   Để TRỐNG nếu muốn chỉ hiện hướng dẫn tạo lối tắt cho chính trang đang xem. */
 const INSTALL_URL="https://tp9sach-ops.github.io/baocaonoibo/";
+const FRAME_SC=()=>IN_FRAME&&!INSTALL_URL;
+function pageUrl(){if(INSTALL_URL)return INSTALL_URL;try{return window.top.location.href}catch(e){return document.referrer||location.href}}
 const UA=navigator.userAgent||"";
 const IS_IOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
 const IS_ANDROID=/Android/i.test(UA);
@@ -802,15 +814,15 @@ function showInstall(body,acts,ptr,note){
   else if(a==='copy')copyLink();
   else if(a==='chrome')openInChrome();
   else if(a==='done'){installed=true;setFlag(true);refreshInstall();closeInstall();toast('Đã ẩn mục cài ứng dụng')}});
- if(ptr){const L={top:'Bấm ở đây',bot:'Bấm ở đây',botr:'Bấm ở đây'}[ptr],d=ptr==='top'?'up':'dn';
+ if(ptr&&!IN_FRAME){const L={top:'Bấm ở đây',bot:'Bấm ở đây',botr:'Bấm ở đây'}[ptr],d=ptr==='top'?'up':'dn';
   const a=document.createElement('div');a.id='ptr';a.className='ptr '+ptr;a.innerHTML=`${s2(d)}<span>${L}</span>`;document.body.appendChild(a)}
  requestAnimationFrame(()=>o.classList.add('on'))}
-function copyLink(){const u=INSTALL_URL||location.href;
+function copyLink(){const u=pageUrl();
  const ok=()=>toast('Đã sao chép liên kết, hãy dán vào Safari hoặc Chrome');
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok).catch(()=>fb());else fb();
  function fb(){const t=document.createElement('textarea');t.value=u;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{document.execCommand('copy');ok()}catch(e){toast(u)}t.remove()}}
-function openInChrome(){const u=(INSTALL_URL||location.href).replace(/^https?:\/\//,'');location.href='intent://'+u+'#Intent;scheme=https;package=com.android.chrome;end'}
-const BEN=`<ul class="ibn"><li><i>${s2('tick')}</i><span>Mở nhanh bằng biểu tượng 9 Sạch, không cần vào Google Sites</span></li><li><i>${s2('tick')}</i><span>Chạy toàn màn hình như ứng dụng thật, không có thanh địa chỉ</span></li><li><i>${s2('tick')}</i><span>Luôn là phiên bản mới nhất, không tốn dung lượng</span></li></ul>`;
+function openInChrome(){const u=pageUrl().replace(/^https?:\/\//,'');location.href='intent://'+u+'#Intent;scheme=https;package=com.android.chrome;end'}
+const BEN=`<ul class="ibn"><li><i>${s2('tick')}</i><span>Mở nhanh bằng biểu tượng 9 Sạch ngay trên màn hình</span></li><li><i>${s2('tick')}</i><span>Chạy toàn màn hình như ứng dụng thật, không có thanh địa chỉ</span></li><li><i>${s2('tick')}</i><span>Luôn là phiên bản mới nhất, không tốn dung lượng</span></li></ul>`;
 const mk=(ic,txt,hl,sm)=>`<div class="mk${hl?' hl':''}">${s2(ic)}<span>${txt}</span>${sm?`<small>${sm}</small>`:''}</div>`;
 function stepsHTML(title,list,intro){return `<h4>${title}</h4>${intro?`<p>${intro}</p>`:''}<ol class="stps">${list.map(x=>`<li><div class="sx">${x}</div></li>`).join('')}</ol>`}
 function renderInstall(){
@@ -847,11 +859,13 @@ function renderInstall(){
  /* 8) Hướng dẫn tay cho Chrome, Edge, Samsung */
  const pos=IS_SAMSUNG?'botr':'top';
  let st;
- if(IS_ANDROID&&IS_SAMSUNG)st=[`Bấm nút menu <b>≡</b> ở góc dưới bên phải.${mk('menu','Menu',true)}`,`Chọn <b>Thêm trang vào</b>, rồi <b>Màn hình chính</b>.${mk('plus','Màn hình chính',true)}`,`Bấm <b>Thêm</b>.`];
+ if(FRAME_SC()&&IS_ANDROID&&!IS_SAMSUNG)st=[`Bấm menu <b>⋮</b> ở góc trên bên phải của Chrome.${mk('dots','Menu',true)}`,`Chọn <b>Thêm vào màn hình chính</b>.${mk('plus','Thêm vào màn hình chính',true)}`,`Bấm <b>Thêm</b>, rồi <b>Thêm tự động</b>. Biểu tượng 9 Sạch sẽ xuất hiện trên màn hình chính.`];
+ else if(FRAME_SC()&&!IS_ANDROID&&!IS_EDGE)st=[`Bấm menu <b>⋮</b> ở góc trên bên phải của Chrome.${mk('dots','Menu',true)}`,`Chọn <b>Truyền, lưu và chia sẻ</b>, rồi <b>Tạo lối tắt…</b>${mk('inst','Tạo lối tắt…',true)}`,`Tích <b>Mở dưới dạng cửa sổ</b>, rồi bấm <b>Tạo</b>. Biểu tượng 9 Sạch sẽ có trên Desktop và menu Start.`];
+ else if(IS_ANDROID&&IS_SAMSUNG)st=[`Bấm nút menu <b>≡</b> ở góc dưới bên phải.${mk('menu','Menu',true)}`,`Chọn <b>Thêm trang vào</b>, rồi <b>Màn hình chính</b>.${mk('plus','Màn hình chính',true)}`,`Bấm <b>Thêm</b>.`];
  else if(IS_ANDROID)st=[`Bấm menu <b>⋮</b> ở góc trên bên phải.${mk('dots','Menu',true)}`,`Chọn <b>Cài đặt ứng dụng</b> (hoặc <b>Thêm vào màn hình chính</b>).${mk('inst','Cài đặt ứng dụng',true)}`,`Bấm <b>Cài đặt</b>.`];
  else if(IS_EDGE)st=[`Bấm menu <b>···</b> ở góc trên bên phải.${mk('dotsh','Cài đặt và nhiều mục khác',true)}`,`Chọn <b>Ứng dụng</b>, rồi <b>Cài đặt trang này dưới dạng ứng dụng</b>.${mk('inst','Cài đặt trang này dưới dạng ứng dụng',true)}`,`Bấm <b>Cài đặt</b>.`];
  else st=[`Tìm biểu tượng cài đặt ở cuối thanh địa chỉ (hình màn hình có mũi tên xuống).${mk('inst','Cài đặt 9 Sạch Checkin',true)}`,`Nếu không thấy, bấm menu <b>⋮</b>, chọn <b>Truyền, lưu và chia sẻ</b>, rồi <b>Cài đặt trang dưới dạng ứng dụng</b>.`,`Bấm <b>Cài đặt</b>. Tích <b>Thêm lối tắt trên màn hình</b> nếu muốn có biểu tượng ngoài Desktop.`];
- showInstall(stepsHTML('Cài ứng dụng '+(IS_ANDROID?'trên Android':'trên máy tính'),st),`<button class="btn o big" data-ic>Đã hiểu</button>`+DONE,pos)}
+ showInstall(stepsHTML('Cài ứng dụng '+(IS_ANDROID?'trên Android':'trên máy tính'),st),`<button class="btn o big" data-ic>Đã hiểu</button>`+DONE,pos,FRAME_SC()?'Biểu tượng tạo ra sẽ mở thẳng trang này, địa chỉ vẫn là www.baocaonoibo.io.vn.':'')}
 function openInstall(){INS_ST=null;renderInstall()}
 async function runNative(){
  const d=DEFERRED;if(!d){INS_ST='tried';renderInstall();return}
