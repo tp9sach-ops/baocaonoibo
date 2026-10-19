@@ -1,26 +1,14 @@
 {
+  "id": "./",
   "name": "9 Sạch Checkin",
   "short_name": "9 Sạch",
-  "description": "Hệ thống công cụ nội bộ của 9 Sạch: tạo đơn khách sỉ, KPI vận hành, lợi nhuận, chấm công, đào tạo và hỗ trợ kỹ thuật. Cài về máy để mở nhanh, chạy toàn màn hình.",
-  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "any",
   "background_color": "#0A261D",
   "theme_color": "#0A261D",
-  "lang": "vi",
-  "categories": ["business", "productivity"],
   "icons": [
     {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
-  ],
-  "screenshots": [
-    {"src": "screenshot-wide.png", "sizes": "1280x720", "type": "image/png", "form_factor": "wide", "label": "Trang chủ 9 Sạch trên máy tính"},
-    {"src": "screenshot-narrow.png", "sizes": "720x1280", "type": "image/png", "form_factor": "narrow", "label": "Trang chủ 9 Sạch trên điện thoại"}
-  ],
-  "related_applications": [
-    {"platform": "webapp", "url": "https://tp9sach-ops.github.io/baocaonoibo/manifest.webmanifest"}
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
   ]
 }
